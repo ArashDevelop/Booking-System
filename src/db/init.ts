@@ -21,7 +21,7 @@ export function getDb(): Database.Database {
   db.pragma('foreign_keys = ON')
 
   const schema = fs.readFileSync(
-    path.join(process.cwd(), 'db', 'schema.sql'),
+    path.join(process.cwd(), 'src', 'db', 'schema.sql'),
     'utf-8'
   )
   db.exec(schema)
