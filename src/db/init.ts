@@ -66,11 +66,11 @@ function seedIfEmpty(database: Database.Database) {
   )
 
   const transaction = database.transaction(() => {
-    const serviceId = uuidv4()
+    const serviceId = 'service-general-consultation'
     insertService.run(serviceId, 'General Consultation', 'Standard consultation session', 60)
 
     const adminPassword = bcrypt.hashSync('admin123', 10)
-    insertAdmin.run(uuidv4(), 'Admin', 'admin@example.com', adminPassword, 1)
+    insertAdmin.run('user-admin-1', 'Admin', 'admin@example.com', adminPassword, 1)
 
     const today = new Date()
     for (let day = 0; day < 14; day++) {
@@ -81,7 +81,8 @@ function seedIfEmpty(database: Database.Database) {
       for (let hour = 9; hour < 17; hour++) {
         const start = `${hour.toString().padStart(2, '0')}:00`
         const end = `${(hour + 1).toString().padStart(2, '0')}:00`
-        insertSlot.run(uuidv4(), serviceId, dateStr, start, end, 1)
+        const slotId = `${serviceId}-${dateStr}-${start}`
+        insertSlot.run(slotId, serviceId, dateStr, start, end, 1)
       }
     }
   })
