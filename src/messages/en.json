@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Home",
+    "book": "Book a Slot",
+    "myBookings": "My Bookings"
+  },
+  "home": {
+    "title": "Welcome to Booking System",
+    "bookService": "Book a Service",
+    "bookDesc": "Choose your preferred date and time slot.",
+    "bookNow": "Book Now",
+    "myBookings": "My Bookings",
+    "myBookingsDesc": "View or cancel your existing bookings.",
+    "viewBookings": "View Bookings"
+  },
+  "book": {
+    "title": "Book a Slot",
+    "selectDate": "Select Date",
+    "checkSlots": "Check Available Slots",
+    "loading": "Loading...",
+    "availableSlots": "Available Slots",
+    "noSlots": "No available slots for this date. Try another date.",
+    "yourDetails": "Your Details",
+    "name": "Name",
+    "email": "Email",
+    "confirmBooking": "Confirm Booking",
+    "booking": "Booking...",
+    "confirmed": "Booking confirmed! Check your email for details.",
+    "error": "Error",
+    "failedCreate": "Failed to create booking",
+    "startTime": "Start Time",
+    "endTime": "End Time"
+  },
+  "myBookings": {
+    "title": "My Bookings",
+    "enterEmail": "Enter your email",
+    "emailPlaceholder": "your@email.com",
+    "findBookings": "Find My Bookings",
+    "searching": "Searching...",
+    "notFound": "No bookings found for this email.",
+    "status": "Status",
+    "cancel": "Cancel Booking",
+    "date": "Date",
+    "time": "Time",
+    "confirmed": "confirmed",
+    "cancelled": "cancelled"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "locale": {
+    "en": "English",
+    "fa": "فارسی"
+  }
+}

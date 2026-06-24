@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "خانه",
+    "book": "رزرو وقت",
+    "myBookings": "رزروهای من"
+  },
+  "home": {
+    "title": "به سامانه رزرو خوش آمدید",
+    "bookService": "رزرو سرویس",
+    "bookDesc": "تاریخ و زمان مورد نظر خود را انتخاب کنید.",
+    "bookNow": "رزرو کنید",
+    "myBookings": "رزروهای من",
+    "myBookingsDesc": "رزروهای خود را مشاهده یا لغو کنید.",
+    "viewBookings": "مشاهده رزروها"
+  },
+  "book": {
+    "title": "رزرو وقت",
+    "selectDate": "انتخاب تاریخ",
+    "checkSlots": "بررسی وقت‌های موجود",
+    "loading": "در حال بارگذاری...",
+    "availableSlots": "وقت‌های موجود",
+    "noSlots": "هیچ وقت خالی برای این تاریخ وجود ندارد. تاریخ دیگری را امتحان کنید.",
+    "yourDetails": "اطلاعات شما",
+    "name": "نام",
+    "email": "ایمیل",
+    "confirmBooking": "تأیید رزرو",
+    "booking": "در حال رزرو...",
+    "confirmed": "رزرو تأیید شد! جزئیات به ایمیل شما ارسال شد.",
+    "error": "خطا",
+    "failedCreate": "ایجاد رزرو با خطا مواجه شد",
+    "startTime": "ساعت شروع",
+    "endTime": "ساعت پایان"
+  },
+  "myBookings": {
+    "title": "رزروهای من",
+    "enterEmail": "ایمیل خود را وارد کنید",
+    "emailPlaceholder": "email@example.com",
+    "findBookings": "جستجوی رزروها",
+    "searching": "در حال جستجو...",
+    "notFound": "هیچ رزروی برای این ایمیل یافت نشد.",
+    "status": "وضعیت",
+    "cancel": "لغو رزرو",
+    "date": "تاریخ",
+    "time": "ساعت",
+    "confirmed": "تأیید شده",
+    "cancelled": "لغو شده"
+  },
+  "theme": {
+    "light": "روشن",
+    "dark": "تاریک"
+  },
+  "locale": {
+    "en": "English",
+    "fa": "فارسی"
+  }
+}
