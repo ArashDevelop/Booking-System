@@ -2,6 +2,8 @@
 
 A service booking system with time slots, reservations, cancellation, and admin management.
 
+**Live demo:** [booking-system-nine-livid.vercel.app](https://booking-system-nine-livid.vercel.app/en/my-bookings)
+
 ## Tech Stack
 
 - **Frontend:** Next.js 14 (App Router), TypeScript, Tailwind CSS, shadcn/ui
