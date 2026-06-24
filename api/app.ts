@@ -8,6 +8,10 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+app.get('/api', (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() })
+})
+
 app.get('/api/slots', (req, res) => {
   try {
     const { date } = req.query

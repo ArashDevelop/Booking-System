@@ -1,10 +1,7 @@
 {
   "buildCommand": "next build",
   "installCommand": "npm install",
-    "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/app.ts"
-    }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" }
   ]
 }
