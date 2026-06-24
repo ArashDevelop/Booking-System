@@ -5,7 +5,7 @@ A service booking system with time slots, reservations, cancellation, and admin 
 ## Tech Stack
 
 - **Frontend:** Next.js 14 (App Router), TypeScript, Tailwind CSS, shadcn/ui
-- **Backend:** Express.js (Vercel serverless function via `serverless-http`)
+- **Backend:** Next.js Route Handlers 
 - **Database:** SQLite (`better-sqlite3`)
 - **State:** Redux Toolkit
 - **i18n:** next-intl (English / فارسی)
@@ -25,10 +25,7 @@ A service booking system with time slots, reservations, cancellation, and admin 
 ## Getting Started
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development servers (Next.js on :3000 + Express API on :3001)
 npm run dev
 ```
 
@@ -37,44 +34,44 @@ Open [http://localhost:3000/en](http://localhost:3000/en).
 ## Project Structure
 
 ```
-├── api/
-│   ├── app.ts              # Express application (routes)
-│   └── index.ts            # Vercel serverless handler
-├── db/
-│   ├── schema.sql          # SQLite schema
-│   └── init.ts             # Auto-migration and seed data
-├── server/
-│   └── dev.ts              # Local Express dev server
 ├── src/
 │   ├── app/
-│   │   ├── [locale]/       # Locale-aware pages
-│   │   │   ├── page.tsx          # Home
-│   │   │   ├── book/page.tsx     # Book a slot
+│   │   ├── [locale]/           # Locale-aware pages
+│   │   │   ├── page.tsx              # Home
+│   │   │   ├── book/page.tsx         # Book a slot
 │   │   │   ├── my-bookings/page.tsx  # View my bookings
-│   │   │   └── loading.tsx       # Loading skeletons
+│   │   │   └── loading.tsx           # Loading skeletons
+│   │   ├── api/                # Next.js Route Handlers
+│   │   │   ├── route.ts              # GET /api (health check)
+│   │   │   ├── slots/route.ts        # GET /api/slots?date=
+│   │   │   ├── bookings/route.ts     # GET/POST /api/bookings
+│   │   │   └── bookings/[id]/route.ts # DELETE /api/bookings/:id
 │   │   └── globals.css
 │   ├── components/
-│   │   ├── ui/             # shadcn/ui components
+│   │   ├── ui/                 # shadcn/ui components
 │   │   ├── Header.tsx
 │   │   ├── ThemeToggle.tsx
 │   │   ├── LocaleSwitcher.tsx
-│   │   ├── providers.tsx   # Redux + Theme providers
-│   │   ├── motion.tsx      # Framer Motion wrappers
+│   │   ├── providers.tsx       # Redux + Theme providers
+│   │   ├── motion.tsx          # Framer Motion wrappers
 │   │   ├── NavButton.tsx
 │   │   ├── Alert.tsx
 │   │   ├── Chip.tsx
 │   │   └── Spinner.tsx
+│   ├── db/
+│   │   ├── schema.sql          # SQLite schema
+│   │   └── init.ts             # Auto-migration and seed data
 │   ├── lib/
-│   │   ├── store.ts        # Redux store
-│   │   ├── hooks.ts        # Typed Redux hooks
-│   │   ├── navigation.ts   # next-intl navigation
+│   │   ├── store.ts            # Redux store
+│   │   ├── hooks.ts            # Typed Redux hooks
+│   │   ├── navigation.ts       # next-intl navigation
 │   │   └── features/
 │   │       └── uiSlice.ts
 │   ├── messages/
-│   │   ├── en.json         # English translations
-│   │   └── fa.json         # Persian translations
+│   │   ├── en.json             # English translations
+│   │   └── fa.json             # Persian translations
 │   ├── i18n.ts
-│   └── middleware.ts       # Locale detection
+│   └── middleware.ts           # Locale detection
 ├── .env / .env.example
 ├── tailwind.config.ts
 ├── next.config.mjs
@@ -85,6 +82,7 @@ Open [http://localhost:3000/en](http://localhost:3000/en).
 
 | Method | Path | Description |
 |--------|------|-------------|
+| `GET` | `/api` | Health check |
 | `GET` | `/api/slots?date=YYYY-MM-DD` | Get available slots |
 | `POST` | `/api/bookings` | Create a booking |
 | `DELETE` | `/api/bookings/:id` | Cancel a booking |
@@ -100,25 +98,18 @@ Open [http://localhost:3000/en](http://localhost:3000/en).
 }
 ```
 
-## Deployment (Vercel)
+## Deployment
 
 ```bash
 npm run build
 ```
 
-Then deploy the project to Vercel. The `api/` directory is automatically deployed as serverless functions. The SQLite database resets on each deploy (ephemeral filesystem).
+Deploy to Vercel. The API is handled by Next.js Route Handlers, so no additional configuration is needed. The SQLite database is ephemeral — it resets on each deployment.
 
 ## Development
 
 ```bash
-# Run both Next.js and API server
 npm run dev
-
-# Run only Next.js
-npm run dev:next
-
-# Run only API server
-npm run dev:api
 ```
 
 ## License
