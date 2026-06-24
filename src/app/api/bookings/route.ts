@@ -35,8 +35,9 @@ export async function POST(req: NextRequest) {
 
     const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(bookingId)
     return NextResponse.json(booking, { status: 201 })
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to create booking' }, { status: 500 })
+  } catch (e) {
+    console.error('POST /api/bookings error:', e)
+    return NextResponse.json({ error: 'Failed to create booking', detail: String(e) }, { status: 500 })
   }
 }
 
@@ -59,7 +60,8 @@ export function GET(req: NextRequest) {
     ).all(email)
 
     return NextResponse.json(bookings)
-  } catch {
-    return NextResponse.json({ error: 'Failed to fetch bookings' }, { status: 500 })
+  } catch (e) {
+    console.error('GET /api/bookings error:', e)
+    return NextResponse.json({ error: 'Failed to fetch bookings', detail: String(e) }, { status: 500 })
   }
 }

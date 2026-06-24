@@ -20,7 +20,8 @@ export function GET(req: NextRequest) {
     }
 
     return NextResponse.json(slots)
-  } catch {
-    return NextResponse.json({ error: 'Failed to fetch slots' }, { status: 500 })
+  } catch (e) {
+    console.error('GET /api/slots error:', e)
+    return NextResponse.json({ error: 'Failed to fetch slots', detail: String(e) }, { status: 500 })
   }
 }

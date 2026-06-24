@@ -33,7 +33,8 @@ export function DELETE(_req: NextRequest, { params }: { params: { id: string } }
     transaction()
 
     return NextResponse.json({ message: 'Booking cancelled' })
-  } catch {
-    return NextResponse.json({ error: 'Failed to cancel booking' }, { status: 500 })
+  } catch (e) {
+    console.error('DELETE /api/bookings/:id error:', e)
+    return NextResponse.json({ error: 'Failed to cancel booking', detail: String(e) }, { status: 500 })
   }
 }

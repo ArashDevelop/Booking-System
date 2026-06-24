@@ -4,9 +4,26 @@ import fs from 'fs'
 import { v4 as uuidv4 } from 'uuid'
 import bcrypt from 'bcryptjs'
 
-const DB_PATH = process.env.DATABASE_PATH || './data/bookings.db'
+const DB_PATH = process.env.DATABASE_PATH || (
+  process.env.VERCEL
+    ? '/tmp/data/bookings.db'
+    : './data/bookings.db'
+)
 
 let db: Database.Database | null = null
+
+function findSchemaPath(): string {
+  const candidates = [
+    path.join(process.cwd(), 'src', 'db', 'schema.sql'),
+    path.join(process.cwd(), 'db', 'schema.sql'),
+    path.join(__dirname, '..', '..', 'schema.sql'),
+    path.join(__dirname, 'schema.sql'),
+  ]
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p
+  }
+  throw new Error(`Schema file not found. Tried: ${candidates.join(', ')}`)
+}
 
 export function getDb(): Database.Database {
   if (db) return db
@@ -17,13 +34,16 @@ export function getDb(): Database.Database {
   }
 
   db = new Database(DB_PATH)
-  db.pragma('journal_mode = WAL')
+  try {
+    db.pragma('journal_mode = WAL')
+  } catch {
+    // WAL not supported on some serverless environments, fallback to DELETE
+    db.pragma('journal_mode = DELETE')
+  }
   db.pragma('foreign_keys = ON')
 
-  const schema = fs.readFileSync(
-    path.join(process.cwd(), 'src', 'db', 'schema.sql'),
-    'utf-8'
-  )
+  const schemaPath = findSchemaPath()
+  const schema = fs.readFileSync(schemaPath, 'utf-8')
   db.exec(schema)
 
   seedIfEmpty(db)
